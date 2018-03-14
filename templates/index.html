@@ -2,13 +2,18 @@
 <title>Big Man on Sub</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
-<h1>RedditAnalysis</h1>
-<p>Here's just a list of the top contributors to BlackPeopleTwitter</p>
-<ul>
-{% for result in results %}
-	<li>{{ result[0]}}: {{result[1]}} </li><br>
-{% endfor %}
-</ul>
+<link rel="stylesheet" type="text/css" href="index.css">
+<body>
+	<div class="container">
+		<h1>RedditAnalysis</h1>
+		<a href="\search">Search</a>
+		<p>Here's just a list of the top contributors to {{ sub }}</p>
+		<ul>
+		{% for result in results %}
+			<li>{{ result[0]}}: {{result[1]}} </li><br>
+		{% endfor %}
+		</ul>
+	</div>
+</body>
 
 
