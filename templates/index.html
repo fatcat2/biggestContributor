@@ -1,14 +1,14 @@
 <!doctype html>
 <title>Big Man on Sub</title>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-   <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<h1>RedditAnalysis</h1>
+<p>Here's just a list of the top contributors to BlackPeopleTwitter</p>
+<ul>
+{% for result in results %}
+	<li>{{ result[0]}}: {{result[1]}} </li><br>
+{% endfor %}
+</ul>
 
 
-     <p>Please enter your reddit credentials to use the app</p>
-     <form class = "container col s12">
-	     <div class="row">
-
-	     </div>
-     </form>
