@@ -4,14 +4,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <link rel="stylesheet" type="text/css" href="index.css">
 <body>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo right">SubAnalysis</a>
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+				<li><a href="\search">Search</a></li>
+				<li><a href="\about">About</a></li>
+			</ul>
+		</div>
+	</nav>
 	<div class="container">
-		<h1>RedditAnalysis</h1>
-		<a href="\search">Search</a>
-		<p>Here's just a list of the top contributors to {{ sub }}</p>
+		<h1>Results</h1>
+		<h3>Here's just a list of the top contributors to r/{{ sub }}</h3>
 		<ul>
-		{% for result in results %}
+			{% for result in results %}
 			<li>{{ result[0]}}: {{result[1]}} </li><br>
-		{% endfor %}
+			{% endfor %}
 		</ul>
 	</div>
 </body>

@@ -5,6 +5,8 @@ reddit = praw.Reddit(client_id=os.environ['client_id'], client_secret=os.environ
 
 print(reddit.user.me())
 dict = {}
+sub = reddit.subreddit('pics').hot()
+print len(sub)
 for submission in reddit.subreddit('BlackPeopleTwitter').hot(limit=10000):
     author = submission.author.name
     if(not dict.has_key(author)):

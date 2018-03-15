@@ -34,8 +34,11 @@ def hello():
 def showResults():
     dict = {}
     sub_name = request.args.get('sub', '')
+    limit_num = request.args.get('num', '')
     sub = reddit.subreddit(request.args.get('sub', ''))
-    for submission in sub.hot(limit=1000000):
+    for submission in sub.new(limit=int(limit_num)):
+        if(submission.author == None):
+            continue
         author = submission.author.name
         if(not dict.has_key(author)):
             dict[author] = 1
