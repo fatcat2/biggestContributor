@@ -35,7 +35,7 @@ def showResults():
     dict = {}
     sub_name = request.args.get('sub', '')
     sub = reddit.subreddit(request.args.get('sub', ''))
-    for submission in sub.hot(limit=100000000000000):
+    for submission in sub.hot(limit=1000000):
         author = submission.author.name
         if(not dict.has_key(author)):
             dict[author] = 1
