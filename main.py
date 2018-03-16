@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-#"python" defaults to a 2.7 shell on Linux, check it's the same for MacOSX
+#If this causes errors, remove the 3.
 
 from flask import Flask
 import os, praw, operator
