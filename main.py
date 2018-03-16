@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-#If this causes errors, remove the 3.
-
 from flask import Flask
 import os, praw, operator
 from flask import render_template
