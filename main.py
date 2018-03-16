@@ -44,7 +44,6 @@ def hello():
 @app.route('/results', methods=['GET', 'POST'])
 def showResults():
     dict = {}
-    score_dict = {}
     sub_name = request.args.get('sub', '')
     limit_num = request.args.get('num', '')
     sub = reddit.subreddit(request.args.get('sub', ''))
@@ -58,18 +57,7 @@ def showResults():
             count = dict[author]
             count += 1
             dict[author] = count
-        if(not score_dict.has_key(author)):
-            score_dict[author] = submission.score
-        else:
-            count = score_dict[author]
-            count += submission.score
-            score_dict[author] = count
     sorted_dict = sorted(dict.items(), key=operator.itemgetter(1))
     sorted_dict.reverse()
-    final_list = [];
-    for list in sorted_dict:
-        list = list + (score_dict[list[0]],)
-        print list
-        final_list.append(list)
 
     return render_template('index.html', sub=sub_name, results=sorted_dict[0:10])
