@@ -33,7 +33,7 @@ def helloWorld():
     final_list = [];
     for list in sorted_dict:
         list = list + (score_dict[list[0]],)
-        #print list
+        print list
         final_list.append(list)
     return render_template('index.html', sub='BlackPeopleTwitter', results=final_list[0:10])
 
@@ -69,6 +69,7 @@ def showResults():
     final_list = [];
     for list in sorted_dict:
         list = list + (score_dict[list[0]],)
+        print list
         final_list.append(list)
 
-    return render_template('index.html', sub=sub_name, results=final_list[0:10])
+    return render_template('index.html', sub=sub_name, results=sorted_dict[0:10])
