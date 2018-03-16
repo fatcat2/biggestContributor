@@ -1,1 +1,1 @@
-/venv, *.pyc
+/venv, *.pyc, .env
