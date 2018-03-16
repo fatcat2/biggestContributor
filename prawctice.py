@@ -6,9 +6,9 @@ reddit = praw.Reddit(client_id=os.environ['client_id'], client_secret=os.environ
 print(reddit.user.me())
 dict = {}
 sub = reddit.subreddit('pics').hot()
-print len(sub)
-for submission in reddit.subreddit('BlackPeopleTwitter').hot(limit=10000):
+for submission in reddit.subreddit('BlackPeopleTwitter').new(limit=10):
     author = submission.author.name
+    print(submission.score)
     if(not dict.has_key(author)):
         dict[author] = 1
     else:
@@ -22,7 +22,6 @@ sorted_dict.reverse()
 stop_count = 0
 
 for key in sorted_dict:
-    print(key)
     if(stop_count == 10):
         break
     else:

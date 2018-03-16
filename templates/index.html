@@ -16,11 +16,15 @@
 	<div class="container">
 		<h1>Results</h1>
 		<h3>Here's just a list of the top contributors to r/{{ sub }}</h3>
-		<ul>
-			{% for result in results %}
-			<li>{{ result[0]}}: {{result[1]}} </li><br>
-			{% endfor %}
-		</ul>
+		<div class="row">
+			<div class="col s6">
+				<ul>
+					{% for result in results %}
+					<li>{{ result[0]}}: {{result[1]}}, {{result[2]}} </li><br>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
 	</div>
 </body>
 
