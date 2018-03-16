@@ -2,18 +2,18 @@
 
 # "python" defaults to a 2.7 shell on Linux, check it's the same for MacOSX
 
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request # one-liner import for flask
 import os, praw, operator
 
 
 app = Flask(__name__)
 
-siteName = "http://127.0.0.1:5000" # change this to an environment var, someday^TM
+siteName = "http://127.0.0.1:5000" # change this to an environment var, Someday^TM
 
 reddit = praw.Reddit(client_id=os.environ['client_id'], client_secret=os.environ['client_secret'], password=os.environ["password"], user_agent="biggestContributor", username="papertow3ls")
 
 @app.route('/')
-def helloWorld(): # must immediately return something, can not have any other code or it throws an error in flask on Linux.
+def helloWorld(): # must immediately return something, can not have any other code or it throws an error in flask on Linux
 
     return redirect("{}/search".format(siteName))
     # dict = {}
@@ -52,6 +52,7 @@ def hello():
 
 @app.route('/results', methods=['GET', 'POST'])
 def showResults():
+
     dict = {}
     score_dict = {}
     sub_name = request.args.get('sub', '')
@@ -75,7 +76,7 @@ def showResults():
             score_dict[author] = count
     sorted_dict = sorted(dict.items(), key=operator.itemgetter(1))
     sorted_dict.reverse()
-    final_list = [];
+    final_list = []
     for list in sorted_dict:
         list = list + (score_dict[list[0]],)
         final_list.append(list)
