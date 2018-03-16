@@ -1,0 +1,4 @@
+Flask
+gunicorn
+praw
+python-2.7.12

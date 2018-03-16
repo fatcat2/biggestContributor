@@ -11,6 +11,8 @@ reddit = praw.Reddit(client_id=os.environ['client_id'], client_secret=os.environ
 def helloWorld():
     dict = {}
     for submission in reddit.subreddit('BlackPeopleTwitter').hot(limit=1000000000):
+        if(submission.author == None):
+            continue
         author = submission.author.name
         if(not dict.has_key(author)):
             dict[author] = 1
