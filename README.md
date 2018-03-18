@@ -16,3 +16,4 @@ Currently doesn't work on mobile.
 ### Laundry List
 - Have the menu show up on mobile
 - Graphs! Maybe D3.js
+- Keep track of which post has max points
