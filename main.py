@@ -12,8 +12,9 @@ siteName = "http://127.0.0.1:5000" # change this to an environment var, Someday^
 
 reddit = praw.Reddit(client_id=os.environ['client_id'], client_secret=os.environ['client_secret'], password=os.environ["password"], user_agent="biggestContributor", username="papertow3ls")
 
-def internalHelloWorld():
 
+@app.route('/')
+def helloWorld(): 
     dict = {}
     score_dict = {}
     for submission in reddit.subreddit('BlackPeopleTwitter').hot(limit=1000000000):
@@ -42,11 +43,6 @@ def internalHelloWorld():
         final_list.append(list)
     return render_template('index.html', sub='BlackPeopleTwitter', results=final_list[0:10])
 
-
-@app.route('/')
-def helloWorld(): # must immediately return something, can not have any other code or it throws an error in flask on Linux
-
-    return redirect("{}/search".format(siteName))
 
 
 @app.route('/search', methods=['GET', 'POST'])
