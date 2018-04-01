@@ -10,11 +10,11 @@ app = Flask(__name__)
 
 siteName = "http://127.0.0.1:5000" # change this to an environment var, Someday^TM
 
-reddit = praw.Reddit(client_id=os.environ['client_id'], client_secret=os.environ['client_secret'], password=os.environ["password"], user_agent="biggestContributor", username="papertow3ls")
+reddit = praw.Reddit(client_id=os.environ['CLIENT_ID'], client_secret=os.environ['client_secret'], password=os.environ["reddit_password"], user_agent="biggestContributor", username="papertow3ls")
 
 
 @app.route('/')
-def helloWorld(): 
+def helloWorld():
     dict = {}
     score_dict = {}
     for submission in reddit.subreddit('BlackPeopleTwitter').hot(limit=1000000000):
@@ -41,7 +41,7 @@ def helloWorld():
         list = list + (score_dict[list[0]],)
         #print list
         final_list.append(list)
-    return render_template('index.html', sub='BlackPeopleTwitter', results=final_list[0:10])
+    return render_template('index.html', sub='BlackPeopleTwitter', results=final_list)
 
 
 
@@ -81,4 +81,4 @@ def showResults():
         list = list + (score_dict[list[0]],)
         final_list.append(list)
 
-    return render_template('index.html', sub=sub_name, results=final_list[0:10])
+    return render_template('index.html', sub=sub_name, results=final_list)
