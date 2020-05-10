@@ -1,7 +1,3 @@
-#!/usr/bin/env python2
-
-# "python" defaults to a 2.7 shell on Linux, check it's the same for MacOSX
-
 from flask import Flask, redirect, render_template, request # one-liner import for flask
 import os, praw, operator
 
@@ -14,14 +10,14 @@ reddit = praw.Reddit(client_id=os.environ['CLIENT_ID'], client_secret=os.environ
 
 
 @app.route('/')
-def helloWorld():
+def index():
     dict = {}
     score_dict = {}
-    for submission in reddit.subreddit('BlackPeopleTwitter').hot(limit=1000000000):
+    for submission in reddit.subreddit('Purdue').hot(limit=1000000000):
         if(submission.author == None):
             continue
         author = submission.author.name
-        if(not author in dict):
+        if(author not in dict):
             dict[author] = 1
         else:
             count = dict[author]
@@ -39,21 +35,20 @@ def helloWorld():
     final_list = []
     for list in sorted_dict:
         list = list + (score_dict[list[0]],)
-        #print list
         final_list.append(list)
-    return render_template('index.html', sub='BlackPeopleTwitter', results=final_list)
+    return render_template('index.html', sub='Purdue', results=final_list)
 
 
 
 @app.route('/search', methods=['GET', 'POST'])
-def hello():
+def search_route():
     return render_template('search.html')
 
 
 @app.route('/results', methods=['GET', 'POST'])
-def showResults():
+def results_route():
 
-    dict = {}
+    ret_dict = {}
     score_dict = {}
     sub_name = request.args.get('sub', '')
     limit_num = request.args.get('num', '')
@@ -62,13 +57,13 @@ def showResults():
         if(submission.author == None):
             continue
         author = submission.author.name
-        if(not dict.has_key(author)):
-            dict[author] = 1
+        if(author not in ret_dict):
+            ret_dict[author] = 1
         else:
-            count = dict[author]
+            count = ret_dict[author]
             count += 1
-            dict[author] = count
-        if(not score_dict.has_key(author)):
+            ret_dict[author] = count
+        if(author not in score_dict):
             score_dict[author] = submission.score
         else:
             count = score_dict[author]
