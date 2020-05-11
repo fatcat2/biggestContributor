@@ -1,19 +1,25 @@
 # biggestContributor
 Who are the biggest contributers on your reddit sub? Check it out [here](
-https://agile-eyrie-77894.herokuapp.com/).
-
-### Dependencies:
-- PRAW (Python)
-- Flask (Python)
-- [Materialize.css](http://materializecss.com/) (HTML)
+https://bigcontrib.torrtle.co/).
 
 ### Description
-This is a flask app that uses the PRAW library in order to get information about subreddits. Currently a WIP.
+This is a Flask app that uses the PRAW library in order to get information about subreddits.
 
-### Issues
-Currently doesn't work on mobile.
+### Contributing
+How to run this app.
 
-### Laundry List
-- Have the menu show up on mobile
-- Graphs! Maybe D3.js
-- Keep track of which post has max points
+1. Clone the repository.
+2. CD into the repository.
+3. Using your Python3 installation, create a virtual environment and activate it.
+```Bash
+$ python3 -m venv env
+$ source env/bin/activate
+```
+4. Install the dependencies.
+```Bash
+$ pip install -r requirements.txt
+```
+5. Run `main.py`
+```Bash
+$ python main.py
+```
