@@ -1,3 +1,5 @@
+from typing import Any, Dict, List
+
 from flask import Flask, redirect, render_template, request # one-liner import for flask
 import os, praw, operator
 
