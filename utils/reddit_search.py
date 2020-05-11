@@ -1,4 +1,3 @@
-import operator
 from typing import Any, Dict, List
 
 import praw
@@ -21,7 +20,7 @@ def get_subreddit_results(
 
     try:
         for submission in sub.new(limit=int(limit_num)):
-            if submission.author == None:
+            if submission.author is None:
                 continue
             author = submission.author.name
             if author not in redditors:
@@ -30,7 +29,7 @@ def get_subreddit_results(
                 )
             else:
                 redditors[author].update_post_score(submission.score)
-    except:
+    except Exception:
         raise SubNotFoundException
 
     return_list = [r.serialize() for r in redditors.values()]
