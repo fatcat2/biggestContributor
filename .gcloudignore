@@ -1,0 +1,7 @@
+env
+Procfile
+runtime.txt
+*.pyc
+.git
+prawctice.py
+.env
