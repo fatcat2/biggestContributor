@@ -22,7 +22,7 @@
 						<tbody>
 							{% for result in results %}
 							<tr>
-								<td id="rank"><strong>{{ result["rank"] }}</strong></td>
+								<td id="rank"><strong>{{ int(result["rank"]) }}</strong></td>
 								<td>{{ result["username"] }}</td>
 								<td>{{ result["post_count"] }}</td>
 								<td>{{ result["post_score"] }}</td>
