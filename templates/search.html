@@ -1,30 +1,33 @@
 <!doctype html>
-<title>Search</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<body>
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo right">SubAnalysis</a>
-			<ul id="nav-mobile" class="left hide-on-med-and-down">
-				<li class="active"><a href="\search">Search</a></li>
-				<li><a href="\about">About</a></li>
-			</ul>
-		</div>
-	</nav>
-	<div class="container">
-		<h1>Search</h1>
-		<div class="row">
-			<form action="/results" method="get">
-				<div class="col s6">
-					Subreddit: <input type="text" name="sub">
+<html lang="en">
+	{% include "head.html" %}
+	<body>
+		{% include "header.html" %}
+		<br/>
+		<div class="container">
+			<h3>Advanced Search</h3>
+			<form action="/results" method="GET">
+			<div class="row">
+					<div class="col-sm">
+						<div class="form-group">
+						<label for="sub">Subreddit name</label>
+						<input type="text" name="sub" class="form-control" id="sub" aria-describedby="emailHelp" placeholder="r/Day6, r/analog, etc...">
+						</div>
+					</div>
+					<div class="col-sm">
+						<div class="form-group">
+						<label for="num">Number of posts to look at</label>
+						<input type="number" name="num" class="form-control" id="num" placeholder="100">
+						</div>
+					</div>
+			</div>
+			<div class="row">
+				<div class="col-sm">
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
-				<div class="col s6">
-					Number of Posts: <input type="number" name="num" value=1000 max=100000000>
-				</div>
-				<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-				</button>
-
-			</form>
+			</div>
+		</form>
 		</div>
+		{% include "footer.html" %}
 	</body>
+</html>
