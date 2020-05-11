@@ -53,19 +53,8 @@ def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Redd
             limit_num (int): the number of posts to look at
             reddit (praw.Reddit): a praw instance to use
     """
+    sub = reddit.subreddit(subreddit_name)
 
-@app.route('/results', methods=['GET', 'POST'])
-def results_route():
-
-    ret_dict = {}
-    score_dict = {}
-    sub_name = request.args.get('sub', '')
-    limit_num = request.args.get('num', '')
-    
-    subreddit_results = get_subreddit_results(request.args.get("sub", ""), reddit)
-
-    sub = reddit.subreddit(request.args.get('sub', ''))
-    
     for submission in sub.new(limit=int(limit_num)):
         if(submission.author == None):
             continue
@@ -89,7 +78,17 @@ def results_route():
         list = list + (score_dict[list[0]],)
         final_list.append(list)
 
-    return render_template('index.html', sub=sub_name, results=final_list)
+    return final_list
+
+
+@app.route('/results', methods=['GET', 'POST'])
+def results_route():
+    sub_name = request.args.get('sub', '')
+    limit_num = request.args.get('num', '')
+
+    subreddit_results = get_subreddit_results(sub_name, int(limit_num), reddit)
+
+    return render_template('index.html', sub=sub_name, results=subreddit_results)
 
 if __name__ == "__main__":
     app.run(debug=True)
