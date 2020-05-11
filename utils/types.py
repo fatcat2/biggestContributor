@@ -73,6 +73,7 @@ class Redditor:
 
 
 class SubNotFoundException(Exception):
+    """ Triggers when a subreddit is not found. """
     def __init__(self, *args):
         pass
 
