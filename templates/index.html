@@ -1,24 +1,13 @@
 <!doctype html>
-<html>
+<html lang="en">
 	<head>
 		<title>Big Man on Sub</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<!-- Including more datables CSS -->
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css"/>
 
-		<!-- Including JQuery -->
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
-		
-		<link rel="stylesheet" type="text/css" href="index.css">
-
-		<!-- Including the datable JS file -->
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css">
-		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+		<!-- Including the bootstrap js file -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
 
 
 		<script>
@@ -28,38 +17,57 @@
 		</script>
 	</head>
 	<body>
-		<nav>
-			<div class="nav-wrapper">
-				<a href="#" class="brand-logo right">SubAnalysis</a>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="\search">Search</a></li>
-					<li><a href="\about">About</a></li>
-				</ul>
-			</div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="#">Biggest Contributor</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+			<a class="nav-link" href="/search">Search</a>
+		      </li>
+		    </ul>
+		    <form action="/results" method="get" class="form-inline my-2 my-lg-0">
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		    </form>
+		  </div>
 		</nav>
 		<div class="container">
-			<h1>Results</h1>
-			<h3>Here's just a list of the top contributors to r/{{ sub }}</h3>
+			<h3>Top contributors to r/{{ sub }}</h3>
 			<div class="row">
-				<div class="col s12">
-					<table id="myTable" class="display">
-						<tr>
-							<th>Username</th>
-							<th>Post count</th>
-							<th>Total score</th>
-							<th>Post Efficiency</th>
-						</tr>
-						{% for result in results %}
-						<tr>
-							<td>{{ result[0] }}</td>
-							<td>{{ result[1] }}</td>
-							<td>{{ result[2] }}</td>
-							<td>{{ result[2]/result[1] | round(1, 'common') }}</td>
-						</tr>
-						{% endfor %}
+				<div class="col-sm">
+					<table class="table" data-toggle="table">
+						<thead>
+							<tr>
+								<th data-sortable="true">Username</th>
+								<th data-sortable="true">Post count</th>
+								<th data-sortable="true">Total score</th>
+								<th data-sortable="true">Post Efficiency</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for result in results %}
+							<tr>
+								<td>{{ result[0] }}</td>
+								<td>{{ result[1] }}</td>
+								<td>{{ result[2] }}</td>
+								<td>{{ result[2]/result[1] | round(1, 'common') }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 	</body>
 </html>
