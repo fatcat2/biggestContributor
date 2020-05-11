@@ -1,6 +1,15 @@
 from typing import Any, Dict
+
+
 class Redditor:
-    def __init__(self, username: str, post_count: int=0, post_score: int=0, comment_count: int=0, comment_score: int=0):
+    def __init__(
+        self,
+        username: str,
+        post_count: int = 0,
+        post_score: int = 0,
+        comment_count: int = 0,
+        comment_score: int = 0,
+    ):
         self.username = username
         self.post_score = post_score
         self.post_count = post_count
@@ -21,7 +30,7 @@ class Redditor:
         self.post_score += new_post_score
         self.post_count += 1
 
-        return self.post_score;
+        return self.post_score
 
     def update_comment_score(self, new_comment_score: int) -> int:
         """Increase the comment score of the Redditor.
@@ -45,7 +54,7 @@ class Redditor:
             A float representing the combined post and comment score.
         """
 
-        return self.comment_score + self.post_score;
+        return self.comment_score + self.post_score
 
     def return_total_count(self) -> int:
         """Fetches the total number of posts and comments.
@@ -60,13 +69,13 @@ class Redditor:
         """Helper function to serialize"""
 
         return_dict = {
-                "username": self.username,
-                "post_score": self.post_score,
-                "comment_score": self.comment_score,
-                "post_count": self.post_count,
-                "comment_count": self.comment_count,
-                "total_count": self.return_total_count(),
-                "total_score": self.return_total_score()
+            "username": self.username,
+            "post_score": self.post_score,
+            "comment_score": self.comment_score,
+            "post_count": self.post_count,
+            "comment_count": self.comment_count,
+            "total_count": self.return_total_count(),
+            "total_score": self.return_total_score(),
         }
 
         return return_dict
@@ -74,6 +83,7 @@ class Redditor:
 
 class SubNotFoundException(Exception):
     """ Triggers when a subreddit is not found. """
+
     def __init__(self, *args):
         pass
 

@@ -5,7 +5,10 @@ import praw
 
 from .types import Redditor, SubNotFoundException
 
-def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Reddit) -> List[Dict[Any, Any]]:
+
+def get_subreddit_results(
+    subreddit_name: str, limit_num: int, reddit: praw.Reddit
+) -> List[Dict[Any, Any]]:
     """Gets highest contributing redditors to a specific subreddit.
 
     Args:
@@ -18,22 +21,23 @@ def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Redd
 
     try:
         for submission in sub.new(limit=int(limit_num)):
-            if(submission.author == None):
+            if submission.author == None:
                 continue
             author = submission.author.name
-            if(author not in redditors):
-                redditors[author] = Redditor(author, post_count=1, post_score=submission.score)
+            if author not in redditors:
+                redditors[author] = Redditor(
+                    author, post_count=1, post_score=submission.score
+                )
             else:
-                redditors[author].update_post_score(submission.score);
+                redditors[author].update_post_score(submission.score)
     except:
         raise SubNotFoundException
 
     return_list = [r.serialize() for r in redditors.values()]
-    sorted_return_list = sorted(return_list, key=lambda r:r["post_score"])
+    sorted_return_list = sorted(return_list, key=lambda r: r["post_score"])
     sorted_return_list.reverse()
 
     for counter in range(0, len(sorted_return_list)):
-        sorted_return_list[counter]["rank"] = counter+1
+        sorted_return_list[counter]["rank"] = counter + 1
 
     return sorted_return_list
-
