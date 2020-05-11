@@ -71,8 +71,7 @@ def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Redd
             count = score_dict[author]
             count += submission.score
             score_dict[author] = count
-    sorted_dict = sorted(dict.items(), key=operator.itemgetter(1))
-    sorted_dict.reverse()
+    sorted_dict = sorted(dict.items(), key=operator.itemgetter(1)).reverse()
     final_list = []
     for list in sorted_dict:
         list = list + (score_dict[list[0]],)
