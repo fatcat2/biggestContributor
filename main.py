@@ -1,12 +1,12 @@
 from flask import Flask, redirect, render_template, request # one-liner import for flask
 import os, praw, operator
 
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
-siteName = "http://127.0.0.1:5000" # change this to an environment var, Someday^TM
-
-reddit = praw.Reddit(client_id=os.environ['CLIENT_ID'], client_secret=os.environ['client_secret'], password=os.environ["reddit_password"], user_agent="biggestContributor", username="papertow3ls")
+reddit = praw.Reddit(client_id=os.environ['CLIENT_ID'], client_secret=os.environ['CLIENT_SECRET'], user_agent="biggestContributor")
 
 
 @app.route('/')
@@ -45,6 +45,15 @@ def search_route():
     return render_template('search.html')
 
 
+def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Reddit) -> List[Dict[Any, Any]]:
+    """Gets highest contributing redditors to a specific subreddit.
+
+    Args:
+            subreddit_name (str): the name of the desired subreddit.
+            limit_num (int): the number of posts to look at
+            reddit (praw.Reddit): a praw instance to use
+    """
+
 @app.route('/results', methods=['GET', 'POST'])
 def results_route():
 
@@ -52,7 +61,11 @@ def results_route():
     score_dict = {}
     sub_name = request.args.get('sub', '')
     limit_num = request.args.get('num', '')
+    
+    subreddit_results = get_subreddit_results(request.args.get("sub", ""), reddit)
+
     sub = reddit.subreddit(request.args.get('sub', ''))
+    
     for submission in sub.new(limit=int(limit_num)):
         if(submission.author == None):
             continue
@@ -77,3 +90,6 @@ def results_route():
         final_list.append(list)
 
     return render_template('index.html', sub=sub_name, results=final_list)
+
+if __name__ == "__main__":
+    app.run(debug=True)
