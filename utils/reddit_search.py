@@ -25,6 +25,8 @@ def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Redd
                 redditors[author] = Redditor(author, post_count=1, post_score=submission.score)
             else:
                 redditors[author].update_post_score(submission.score);
+            
+            #TODO use the PRAW api to implement comment scores.
     except:
         raise SubNotFoundException
 
