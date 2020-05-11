@@ -15,11 +15,16 @@ How to run this app.
 $ python3 -m venv env
 $ source env/bin/activate
 ```
-4. Install the dependencies.
+4. Create a `.env` file in the repo folder and add the following environment variables.
+```Bash
+CLIENT_ID=<reddit web app client id>
+CLIENT_SECRET=<reddit web app client secret>
+```
+5. Install the dependencies.
 ```Bash
 $ pip install -r requirements.txt
 ```
-5. Run `main.py`
+6. Run `main.py`
 ```Bash
 $ python main.py
 ```
