@@ -16,7 +16,11 @@
 								<th data-sortable="true">Username</th>
 								<th data-sortable="true">Post count</th>
 								<th data-sortable="true" data-sort-order="desc">Post score</th>
-								<th data-sortable="true">Post Efficiency</th>
+								<th data-sortable="true">Post efficiency</th>
+								<th data-sortable="true">Comment count</th>
+								<th data-sortable="true">Comment score</th>
+								<th data-sortable="true">Comment Efficiency</th>
+								<th data-sortable="true">Total efficiency</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -27,6 +31,10 @@
 								<td>{{ result["post_count"] }}</td>
 								<td>{{ result["post_score"] }}</td>
 								<td>{{ result["post_score"]/result["post_count"] | round(1, 'common') }}</td>
+								<td>{{ result["comment_count"] }}</td>
+								<td>{{ result["comment_score"] }}</td>
+								<td>{{ result["comment_score"]/result["comment_count"] | round(1, 'common') }}</td>
+								<td>{{ (result["comment_score"]+result["post_score"])/(result["comment_count"]+result["post_count"]) | round(1, 'common') }}</td>
 							</tr>
 							{% endfor %}
 						</tbody>
