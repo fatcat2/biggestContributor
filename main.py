@@ -60,7 +60,7 @@ def get_subreddit_results(subreddit_name: str, limit_num: int) -> List[Dict[Any,
 @app.route('/results', methods=['GET', 'POST'])
 def results_route():
     sub_name = request.args.get('sub', '')
-    limit_num = request.args.get('num', '')
+    limit_num = request.args.get('num', '') or 100
 
     subreddit_results = get_subreddit_results(sub_name, int(limit_num))
 
