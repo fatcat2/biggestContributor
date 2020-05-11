@@ -21,6 +21,7 @@ CLIENT_ID=<reddit web app client id>
 CLIENT_SECRET=<reddit web app client secret>
 ```
 5. Install the dependencies.
+```
 ```Bash
 $ pip install -r requirements.txt
 ```
