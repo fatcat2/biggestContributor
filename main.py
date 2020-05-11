@@ -3,7 +3,7 @@ from typing import Any, Dict, List
 from flask import Flask, redirect, render_template, request
 import os, praw, operator
 
-from utils import get_subreddit_results
+from utils import get_subreddit_results, SubNotFoundException
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -34,7 +34,10 @@ def results_route():
 
     limit_num = request.args.get('num', '') or 100
 
-    subreddit_results = get_subreddit_results(sub_name, int(limit_num), reddit)
+    try:
+        subreddit_results = get_subreddit_results(sub_name, int(limit_num), reddit)
+    except SubNotFoundException:
+        return render_template("error.html", sub=sub_name)
 
     return render_template('index.html', sub=sub_name, results=subreddit_results, limit=int(limit_num))
 

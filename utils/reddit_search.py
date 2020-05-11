@@ -3,7 +3,7 @@ from typing import Any, Dict, List
 
 import praw
 
-from .types import Redditor
+from .types import Redditor, SubNotFoundException
 
 def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Reddit) -> List[Dict[Any, Any]]:
     """Gets highest contributing redditors to a specific subreddit.
@@ -16,14 +16,17 @@ def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Redd
     redditors: Dict[str, Redditor] = {}
     sub = reddit.subreddit(subreddit_name)
 
-    for submission in sub.new(limit=int(limit_num)):
-        if(submission.author == None):
-            continue
-        author = submission.author.name
-        if(author not in redditors):
-            redditors[author] = Redditor(author, post_count=1, post_score=submission.score)
-        else:
-            redditors[author].update_post_score(submission.score);
+    try:
+        for submission in sub.new(limit=int(limit_num)):
+            if(submission.author == None):
+                continue
+            author = submission.author.name
+            if(author not in redditors):
+                redditors[author] = Redditor(author, post_count=1, post_score=submission.score)
+            else:
+                redditors[author].update_post_score(submission.score);
+    except:
+        raise SubNotFoundException
 
     return_list = [r.serialize() for r in redditors.values()]
     sorted_return_list = sorted(return_list, key=lambda r:r["post_score"])

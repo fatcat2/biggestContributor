@@ -70,3 +70,11 @@ class Redditor:
         }
 
         return return_dict
+
+
+class SubNotFoundException(Exception):
+    def __init__(self, *args):
+        pass
+
+    def __str__(self):
+        return "Subreddit not found"
