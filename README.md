@@ -29,3 +29,4 @@ $ pip install -r requirements.txt
 ```Bash
 $ python main.py
 ```
+7. Open `localhost:8080` in a browser to see live changes.  
