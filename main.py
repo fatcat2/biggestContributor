@@ -62,15 +62,11 @@ def get_subreddit_results(subreddit_name: str, limit_num: int, reddit: praw.Redd
         if(author not in ret_dict):
             ret_dict[author] = 1
         else:
-            count = ret_dict[author]
-            count += 1
-            ret_dict[author] = count
+            ret_dict[author] += 1
         if(author not in score_dict):
             score_dict[author] = submission.score
         else:
-            count = score_dict[author]
-            count += submission.score
-            score_dict[author] = count
+            score_dict[author] += submission.score
     sorted_dict = sorted(dict.items(), key=operator.itemgetter(1)).reverse()
     final_list = []
     for list in sorted_dict:
