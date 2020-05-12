@@ -22,8 +22,8 @@
 						<tbody>
 							{% for result in results %}
 							<tr>
-								<td id="rank"><strong>{{ int(result["rank"]) }}</strong></td>
-								<td>{{ result["username"] }}</td>
+								<td id="rank"><strong>{{ int(result["rank"]gi) }}</strong></td>
+								<td><a href={{ "https://reddit.com/u/"+result["username"]}}>{{ result["username"] }}</a></td>
 								<td>{{ result["post_count"] }}</td>
 								<td>{{ result["post_score"] }}</td>
 								<td>{{ result["post_score"]/result["post_count"] | round(1, 'common') }}</td>
